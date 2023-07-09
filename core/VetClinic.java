@@ -7,6 +7,7 @@ import ru.gb.lessons.interfaces.core.clients.Animal;
 import ru.gb.lessons.interfaces.core.clients.Animals;
 import ru.gb.lessons.interfaces.core.clients.Flyable;
 import ru.gb.lessons.interfaces.core.clients.Human;
+import ru.gb.lessons.interfaces.core.clients.Runnable;
 import ru.gb.lessons.interfaces.core.clients.Soundable;
 import ru.gb.lessons.interfaces.core.clients.Swimable;
 import ru.gb.lessons.interfaces.core.clients.home.impl.Cat;
@@ -26,37 +27,58 @@ public class VetClinic {
         // animals.add(human);
         animals.add(cat);
         for (Animals element: animals) {
-            heal(element);
+            heal((Animal) element);
         } 
         Duck duck = new Duck(0, 0, null, null);
         Popugai popugai = new Popugai(0, 0, null, null);
         Vidra vidra = new Vidra(0, 0, null, null);
         WildCat wildCat = new WildCat(0, 0, null, null);
-        wildanimals.add(duck);        
-        wildanimals.add(popugai);
-        wildanimals.add(vidra);           
-        wildanimals.add(wildCat);
-        for (Animals element: wildanimals) { 
-            fly((Flyable) element); 
-        }
+        animals.add(duck);        
+        animals.add(popugai);
+        animals.add(vidra);           
+        animals.add(wildCat);
+        System.out.println(getFlyables() + " Летающие");
+        System.out.println(getSwimable() + " Плавающие");
+        System.out.println(getRunnable() + " Ходящие");
+        System.out.println(getSoudable() + " Говорящие");
         
         
     }
-    private static void heal(Animals patients) {
+    private static void heal(Animal patients) {
         System.out.println(patients.getClassName() + " вылечен");
     }
-    private static void fly(Flyable patients) {
-        System.out.println(patients.getClassName() + " летает"); 
-    } 
-    private static void run(Runnable patients) {
-        System.out.println(((Animal) patients).getClassName() + " ходит"); 
-    } 
-    private static void swim(Swimable patients) {
-        System.out.println(((Animal) patients).getClassName() + " плавает"); 
-    } 
-    private static void sound(Soundable patients) {
-        System.out.println(((Animal) patients).getClassName() + " говорит"); 
-    } 
+
+    public static List<Animal> getFlyables() {
+        List<Animal> result = new ArrayList<>();
+        for (Animals item: animals) {
+            if (item instanceof Flyable) result.add((Animal)getClassName(item));
+        }
+        return result;
+    }
+    private static Animal getClassName(Animals item) {
+        return null;
+    }
+    public static List<Animal> getSwimable() {
+        List<Animal> result = new ArrayList<>();
+        for (Animals item: animals) {
+            if (item instanceof Swimable) result.add((Animal) item);
+        }
+        return result;
+    }
+    public static List<Animal> getRunnable() {
+        List<Animal> result = new ArrayList<>();
+        for (Animals item: animals) {
+            if (item instanceof Runnable) result.add((Animal) item);
+        }
+        return result;
+    }
+    public static List<Animal> getSoudable() {
+        List<Animal> result = new ArrayList<>();
+        for (Animals item: animals) {
+            if (item instanceof Soundable) result.add((Animal) item);
+        }
+        return result;
+    }
    
      
 }
