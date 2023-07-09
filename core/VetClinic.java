@@ -51,13 +51,11 @@ public class VetClinic {
     public static List<Animal> getFlyables() {
         List<Animal> result = new ArrayList<>();
         for (Animals item: animals) {
-            if (item instanceof Flyable) result.add((Animal)getClassName(item));
+            if (item instanceof Flyable) result.add((Animal) item);
         }
         return result;
     }
-    private static Animal getClassName(Animals item) {
-        return null;
-    }
+    
     public static List<Animal> getSwimable() {
         List<Animal> result = new ArrayList<>();
         for (Animals item: animals) {
